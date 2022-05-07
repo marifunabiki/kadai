@@ -10,32 +10,182 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
-<body>
+<body class="">
+  <div class="container w-75">
+
+
 
 <header>
-  <h1>トランプを1枚ひいてみよう</h1>
+<div align="center"> <h1>トランプを1枚ひいてみよう</h1></div>
+
 </header>
 
-<main>
+<div is ="choice">
 
-  
-  
+  <div align="center" font size="5"> <h2>一枚選んでみる</h2></div>
+  <div align=center>
+<Img id="e1" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="e2" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="e3" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="e4" src="ura.png" width=200px height=250px><!--トランプの裏-->
+</div>
+
+<div align="center" font size="5"><h3>相手が選ぶ</h3></div>
+<div align=center>
+<Img id="f1" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="f2" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="f3" src="ura.png" width=200px height=250px><!--トランプの裏-->
+<Img id="f4" src="ura.png" width=200px height=250px><!--トランプの裏-->
+</div>
+ 
+<div align="center" font size="5"><h4>勝敗は？</h4></div>
+<div align=center><h1 id="result">???</h1></div>
+<div align=center><Img id="win" src=""></div>
 
 
-</main>
 
-<footer></footer>
-<script>
+<script type="text/javascript">
+function getElementID(nm){
+return document.getElementById(nm);
+}
+
+var myNumber="", hisNumber="";
+
+var reverse = (function(){
+
+  var that={},my={};
+
+    my.obj={e1:"s3.png",//トランプの表
+            e2:"d5.png",//トランプの表
+            e3:"c9.png",//トランプの表
+            e4:"c10.png",//トランプの表
+            f1:"h2.png",//トランプの表
+            f2:"h4.png",//トランプの表
+            f3:"d6.png",//トランプの表
+            f4:"c12.png"};//トランプの表
+
+    my.turn=function(s){
+
+     var id=s.id,
+         img=s.img,
+         flag=false,
+         obj=getElementID(id);
+
+         obj.onclick=function(){
+             if(flag){
+                 obj.src="ura.png";//トランプの裏
+
+                 if(id=="e1" || id=="e2" || id=="e3" || id=="e4")
+                  myNumber="";  
+                 if(id=="f1" || id=="f2" || id=="f3" || id=="f4")
+                  hisNumber="";  
+
+             }else{
+                 obj.src=img;
+
+                 if(id=="e1" || id=="e2" || id=="e3" || id=="e4"){
+                  if(myNumber!="")
+                    getElementID(myNumber).src="ura.png";
+                  myNumber=id;  
+                 }
+                 if(id=="f1" || id=="f2" || id=="f3" || id=="f4"){
+                  if(hisNumber!="")
+                    getElementID(hisNumber).src="ura.png";
+                  hisNumber=id;
+                 }
+                  if(myNumber==="" || hisNumber===""){
+                    getElementID("win").src="";
+                    getElementID("result").innerText="";
+                  }
+                  else{
+                    console.log(myNumber);
+                    console.log(hisNumber);
+                    if (PicToNum(myNumber) > PicToNum(hisNumber)) {
+                      judge = "勝ち";
+                      getElementID("win").src="honey.png";
+                    }
+                      
+                    else {
+                      judge = "負け";
+                      PicNumber = Math.floor(Math.random()*3);
+                      if(PicNumber == 0)
+                      getElementID("win").src="fault1.png";
+                      else if(PicNumber == 1)
+                      getElementID("win").src="fault2.png";
+                      else if(PicNumber == 2)
+                      getElementID("win").src="fault3.png";
+                    }
+                    
+                    console.log(judge);
+                    getElementID("result").innerText=judge;
+
+                }
+             }
+           flag=!flag;
+         }
+
+    }
+
+    that.init=function(){
+      for(var index in my.obj){
+        my.turn({id:index,img:my.obj[index]});
+      }
+    }
+
+    return that;
+
+})();
+
+function PicToNum(id){
+  if(id=="e1")
+    num=3;
+  else if(id=="e2")
+    num=5;
+  else if(id=="e3")
+    num=9;
+  else if(id=="e4")
+    num=10;    
+  else if(id=="f1")
+    num=2;
+  else if(id=="f2")
+    num=4;
+  else if(id=="f3")
+    num=6;
+  else if(id=="f4")
+    num=12;    
+  return num;
+}
 
 
-    
-    
-    
-    
-    
-    
-    
+window.onload=function(){
+  reverse.init();    
+}
+
+function myGame() {
+  myNumber = document.getElementById("nm").selectedIndex;
+  hisNumber = Meth.floor(Math.random()*4);
+}
+if( hisNumber == 0 ){
+his = "s3.png";
+}
+if( hisNumber == 1 ){
+his = "d5.png";
+}
+if( hisNumber == 2 ){
+his = "c9.png";
+}
+if( hisNumber == 3 ){
+his = "c10.png";
+}
+
+  if (myNumber - hisNumber > 0 ) {
+    judge = "勝ち"
+  }
+  else {
+    judge = "負け"
+  }
 
 </script>
+</div>
 </body>
 </html>
