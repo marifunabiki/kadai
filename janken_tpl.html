@@ -13,16 +13,14 @@
 <body class="">
   <div class="container w-75">
 
-
-
 <header>
-<div align="center"> <h1>トランプの数の大きさで競う！</h1></div>
+<div align="center"> <h1>トランプの数の大きさで遊ぼう！</h1></div>
 
 </header>
 
 <div is ="choice">
-
-  <div align="center"> <h2>一枚選んでみる</h2></div>
+  <div align="center"><img src="scale.png" width="500px" height="250px"></div>
+  <div align="center"> <h2>自分の一枚を選ぶ</h2></div>
   <div align=center>
 <Img id="e1" src="ura.png" width=200px height=250px><!--トランプの裏-->
 <Img id="e2" src="ura.png" width=200px height=250px><!--トランプの裏-->
@@ -30,7 +28,11 @@
 <Img id="e4" src="ura.png" width=200px height=250px><!--トランプの裏-->
 </div>
 
-<div align="center" font size="5"><h3>相手が選ぶ</h3></div>
+<div align="center"><img src="pooh.png" width="500px" height="200px"></div>
+
+
+<div align="center" font size="5"><h3>相手の一枚を選ぶ</h3></div>
+
 <div align=center>
 <Img id="f1" src="ura.png" width=200px height=250px><!--トランプの裏-->
 <Img id="f2" src="ura.png" width=200px height=250px><!--トランプの裏-->
@@ -38,10 +40,14 @@
 <Img id="f4" src="ura.png" width=200px height=250px><!--トランプの裏-->
 </div>
  
-<div align="center" font size="5"><h4>さて、結果は？</h4></div>
-<div align=center><h1 id="result">???</h1></div>
-<div align=center><Img id="win" src=""></div>
+<div align="center"><img src="image1.png" width="450px" height="150px"></div>
 
+<div align="center" font size="5"><h4>さあ、結果は？</h4></div>
+
+<div align="center" font size="5"><h4>自分の数が大きければ蜂蜜をもらえるよ</h4></div>
+
+<div align=center><h1 id="result"><img src="result1.jpg"></h1></div>
+<div align=center><Img id="win" src=""></div>
 
 
 <script type="text/javascript">
@@ -101,8 +107,8 @@ var reverse = (function(){
                     console.log(myNumber);
                     console.log(hisNumber);
                     if (PicToNum(myNumber) > PicToNum(hisNumber)) {
-                      judge = "勝ち！蜂蜜をゲット！";
-                      getElementID("win").src="honey.png";
+                      judge = "やったね！蜂蜜をゲット！";
+                      getElementID("win").src="pooh2.png";
                     }
                       
                     else {
